@@ -13,19 +13,15 @@ public class JetPlane extends Aircraft implements Flyable{
     @Override
     public void updateConditions(){
         String weather = this.weatherTower.getWeather(this.coordinates);
-        int[] changes;
         if (weather.equals("SUN"))
-            changes = new int[]{10, 0, 2};
+            Coordinates.updateCoordinate(coordinates, new int[]{0, 10, 2});
         else if (weather.equals("RAIN"))
-            changes = new int[]{0, 5, 0};
+            Coordinates.updateCoordinate(coordinates, new int[]{0, 5, 0});
         else if (weather.equals("FOG"))
-            changes = new int[]{0, 1, 0};
+            Coordinates.updateCoordinate(coordinates, new int[]{0, 1, 0});
         else if (weather.equals("SNOW"))
-            changes = new int[]{0, 0, -12};
-        else
-            changes = null;
+            Coordinates.updateCoordinate(coordinates, new int[]{0, 0, -7});
         System.out.println(this.toString() + "It's " + weather);
-        this.coordinates = Coordinates.updateCoordinate(coordinates, changes);
         if (coordinates.getHeight() <= 0)
             weatherTower.unregister(this);
     }

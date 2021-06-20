@@ -12,24 +12,16 @@ public class Baloon extends Aircraft implements Flyable {
 
     @Override
     public void updateConditions(){
-        switch (this.weatherTower.getWeather(this.coordinates)) {
-            case "SUN":
-                System.out.println(this.toString() + "It's SUN");
-                this.coordinates = Coordinates.updateCoordinate(coordinates, 2, 0, 4);
-                break;
-            case "RAIN":
-                System.out.println(this.toString() + "It's RAIN");
-                this.coordinates = Coordinates.updateCoordinate(coordinates, 0, 0, -5);
-                break;
-            case "FOG":
-                System.out.println(this.toString() + "It's FOG");
-                this.coordinates = Coordinates.updateCoordinate(coordinates, 0, 0, -3);
-                break;
-            case "SNOW":
-                System.out.println(this.toString() + "It's SNOW");
-                this.coordinates = Coordinates.updateCoordinate(coordinates, 0, 0, -15);
-                break;
-        }
+        String weather = this.weatherTower.getWeather(this.coordinates);
+        if (weather.equals("SUN"))
+            Coordinates.updateCoordinate(coordinates, new int[]{2, 0, 4});
+        else if (weather.equals("RAIN"))
+            Coordinates.updateCoordinate(coordinates, new int[]{0, 0, -5});
+        else if (weather.equals("FOG"))
+            Coordinates.updateCoordinate(coordinates, new int[]{0, 0, -3});
+        else if (weather.equals("SNOW"))
+            Coordinates.updateCoordinate(coordinates, new int[]{0, 0, -15});
+        System.out.println(this.toString() + "It's " + weather);
         if (coordinates.getHeight() <= 0)
             weatherTower.unregister(this);
     }
