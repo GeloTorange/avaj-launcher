@@ -1,4 +1,4 @@
-package com.school21.weather;
+package com.school21.simulator;
 
 import com.school21.simulator.vehicles.Coordinates;
 
@@ -8,7 +8,7 @@ public class WeatherProvider {
 
     private WeatherProvider() {}
 
-    private static WeatherProvider getProvider() {
+    public static WeatherProvider getProvider() {
         if (weatherProvider == null) {
             weatherProvider = new WeatherProvider();
         }

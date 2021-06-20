@@ -19,7 +19,7 @@ public class Tower {
     }
 
     protected void conditionsChanged() {
+        for (Flyable aircraft : this.observers)
+            aircraft.updateConditions();
     }
-
-
 }
